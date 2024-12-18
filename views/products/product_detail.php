@@ -1,10 +1,10 @@
 <?php
-require_once '../shares/header.php';
-require_once '../../controllers/ProductController.php';
+    require_once '../shares/header.php';
+    require_once '../../controllers/ProductController.php';
 
-$productController = new ProductController($pdo);
-$productId = $_GET['id'];
-$product = $productController->GetProductById($productId); // Store returned product
+    $productController = new ProductController($pdo);
+    $productId = $_GET['id'];
+    $product = $productController->GetProductById($productId);
 ?>
 <!DOCTYPE html>
 <html>
@@ -12,7 +12,7 @@ $product = $productController->GetProductById($productId); // Store returned pro
     <title>Chi tiết sản phẩm</title>
 </head>
 <body>
-    <?php if ($product): ?> <!-- Check if product exists -->
+    <?php if ($product): ?>
         <div class="product-container">
             <img style="height: 400px;width:350px;" class="product-image" src="<?php echo $product['product_image']; ?>" alt="<?php echo $product['name']; ?>">
             <div class="product-details">

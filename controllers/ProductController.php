@@ -9,26 +9,24 @@ class ProductController {
     }
 
     public function GetAllProducts() {
-        $products = $this->productModel->getAllProducts();
-        return $products;
+        $listProducts = $this->productModel->getAllProducts();
+        if(!$listProducts)
+            return null;
+        return $listProducts;
     }
 
-     public function GetProductById($id) {
-          $product = $this->productModel->getProductById($id);
-          if ($product) {
-               return $product;
-          } else {
-               return null;
-          }
-     }
+    public function GetProductById($id) {
+        $product = $this->productModel->getProductById($id);
+        if(!$product)
+            return null;
+        return $product;
+    }
 
     public function GetProductByCategory($categoryId) {
         $products = $this->productModel->getProductByCategory($categoryId);
-        if (!empty($products)) {
-            echo json_encode($products);
-        } else {
-            echo json_encode(['message' => 'Không tìm thấy sản phẩm']);
-        }
+        if(!$products)
+            return null;
+        return $products;
     }
 }
 ?>
