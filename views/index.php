@@ -23,7 +23,7 @@
           <?php foreach($categories as $category): ?>
                <ul>
                     <li>
-                         <a href="/views/product/Category.php?id=<?php echo $category['id']; ?>"><?php echo $category['name']; ?></a>
+                         <a href="products/product_category.php?id=<?php echo $category['id']; ?>"><?php echo $category['name']; ?></a>
                     </li>
                </ul>
           <?php endforeach; ?>
@@ -41,6 +41,6 @@
           <?php endforeach; ?>
      </div>
 
-  <?php require_once '../views/shares/footer.php';?>
+  <!-- <?php require_once '../views/shares/footer.php';?> -->
 </body>
 </html>
