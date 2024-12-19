@@ -1,0 +1,15 @@
+.product-item-content {
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+
+.product-item {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: center;
+}

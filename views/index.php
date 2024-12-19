@@ -17,35 +17,22 @@ $products = $productController->GetAllProducts();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Danh mục sản phẩm</title>
-    <style>
-        .product-item-content {
-            border: 1px solid #ccc;
-            padding: 10px;
-        }
-
-        .product-item {
-            border: 1px solid #ccc;
-            padding: 10px;
-            margin: 10px;
-        }
-
-        .footer-container {
-            display: flex;
-            justify-content: center;
-        }
-    </style>
+    <link rel="stylesheet" href="/T-Shop/media/css/index.css">
+   
 </head>
 <body>
-    <div class="category-list">
-        <h2>DANH MỤC</h2>
-        <?php foreach($categories as $category): ?>
-            <ul>
-                <li>
-                    <a href="/views/product/Category.php?id=<?php echo $category['id']; ?>"><?php echo $category['name']; ?></a>
-                </li>
-            </ul>
-        <?php endforeach; ?>
-    </div>
+
+     <div class="category-list">
+          <h2>DANH MỤC</h2>
+          <?php foreach($categories as $category): ?>
+               <ul>
+                    <li>
+                         <a href="products/product_category.php?id=<?php echo $category['id']; ?>"><?php echo $category['name']; ?></a>
+                    </li>
+               </ul>
+          <?php endforeach; ?>
+     </div>
+
 
     <div class="product-list">
         <?php foreach($products as $product): ?>
@@ -61,8 +48,10 @@ $products = $productController->GetAllProducts();
         <?php endforeach; ?>
     </div>
 
+
     <div class="footer-container">
         <?php require_once '../views/shares/footer.php';?>
     </div>
+
 </body>
 </html>
