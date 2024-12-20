@@ -1,5 +1,5 @@
 <?php 
-    require_once __DIR__ . '/../models/CategoryModel.php';
+    require_once '../models/CategoryModel.php';
     class CategoryController{
         private $categoryModel;
         private $pdo;
