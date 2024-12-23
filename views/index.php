@@ -1,14 +1,14 @@
 <?php
 
-require_once __DIR__ . '/shares/header.php';
-require_once '../controllers/ProductController.php';
-require_once '../controllers/CategoryController.php';
+    require_once __DIR__ . '/shares/header.php';
+    require_once '../controllers/ProductController.php';
+    require_once '../controllers/CategoryController.php';
 
-$categoryController = new CategoryController($pdo);
-$categories = $categoryController->GetAllCategories();
+    $categoryController = new CategoryController($pdo);
+    $categories = $categoryController->GetAllCategories();
 
-$productController = new ProductController($pdo);
-$products = $productController->GetAllProducts();
+    $productController = new ProductController($pdo);
+    $products = $productController->GetAllProducts();
 ?>
 
 <!DOCTYPE html>

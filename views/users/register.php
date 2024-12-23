@@ -1,74 +1,39 @@
 <?php
-require_once __DIR__ . '/../shares/header.php';
+    require_once __DIR__ . '/../shares/header.php';
+    require_once __DIR__ . '/../../config/db.php';
+    require_once __DIR__ . '/../../controllers/UserController.php';
+    $userController = new UserController($pdo);
+
+    $errors = [];
+    $successMessage = '';
+    
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $fullname = trim($_POST['fullname']);
+        $user_name = trim($_POST['user_name']);
+        $password = trim($_POST['password']);
+    
+        if (empty($fullname) || empty($user_name) || empty($password)) {
+            $errors[] = "Vui lòng nhập đầy đủ thông tin.";
+        } else {
+            $result = $userController->register($fullname, $user_name, $password);
+    
+            if ($result === "Tên đăng nhập đã tồn tại") {
+                $errors[] = "Tên đăng nhập đã tồn tại.";
+            } elseif ($result) {
+                $successMessage = "Đăng ký thành công. Chuyển hướng đến trang đăng nhập...";
+                header("refresh:2; url=login.php");
+                exit();
+            } else {
+                $errors[] = "Đăng ký thất bại. Vui lòng thử lại.";
+            }
+        }
+    }
 ?>
 <!DOCTYPE html>
 <html>
 <head>
     <title>T Shop - Đăng Ký</title>
-    <link rel="stylesheet" href="register.css">
-    <style>
-        .form-container {
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-            padding: 30px 40px;
-            text-align: center;
-            max-width: 500px;
-            margin: 0 auto;
-        }
-
-        .form-group {
-            margin-bottom: 15px;
-            text-align: left;
-        }
-
-        h2 {
-            color: #D10024;
-            margin-bottom: 20px;
-            font-size: 24px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-
-        input[type="text"],
-        input[type="password"] {
-            width: 90%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 14px;
-            margin-bottom: 5px;
-        }
-
-        small {
-            display: block;
-            font-size: 12px;
-            color: #777;
-            margin-top: 5px;
-        }
-
-        .register-button {
-            background-color: #D10024;
-            color: #fff;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 5px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-            font-size: 16px;
-            margin-top: 10px;
-        }
-
-        .register-button:hover {
-            background-color: #b8001e;
-            transform: translateY(-2px);
-        }
-    </style>
+    <link rel="stylesheet" href="/T-Shop/media/css/register.css">
 </head>
 <body>
 
@@ -80,7 +45,7 @@ require_once __DIR__ . '/../shares/header.php';
                 <input type="text" id="fullname" name="fullname" placeholder="HỌ VÀ TÊN" required style="width: 300px;">
                 </div>
                 <div class="form-group">
-                <input type="text" id="username" name="username" placeholder="TÊN ĐĂNG NHẬP" required style="width: 300px;">
+                <input type="text" id="user_name" name="user_name" placeholder="TÊN ĐĂNG NHẬP" required style="width: 300px;">
                 </div>
                 <div class="form-group">
                 <input type="password" id="password" name="password" placeholder="MẬT KHẨU" required style="width: 300px;">

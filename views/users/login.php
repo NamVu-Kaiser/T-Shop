@@ -1,7 +1,34 @@
-
 <?php
+session_start();
+require_once __DIR__ . '/../../config/db.php';
+require_once __DIR__ . '/../../controllers/UserController.php';
+
+// Initialize UserController
+$userController = new UserController($pdo);
+
+$error = '';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $user_name = trim($_POST['user_name']);
+    $password = trim($_POST['password']);
+
+    // Attempt login using UserController
+    $result = $userController->login($user_name, $password);
+
+    if ($result['status']) {
+        // Store user data in session
+        $_SESSION['user'] = $result['user'];
+        header('Location: ../index.php'); // Redirect to index page
+        exit;
+    } else {
+        // Lấy thông báo lỗi chi tiết
+        $error = $result['error'];
+    }
+}
+
 require_once __DIR__ . '/../shares/header.php';
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,28 +37,17 @@ require_once __DIR__ . '/../shares/header.php';
 </head>
 <body>
     <div class="form-container">
-        <h2 class="title">Đăng nhập với</h2>
-        <div class="social-buttons">
-            <button class="btn-google">
-                <img src="/T-Shop/media/icons/google-icon.png" alt="Google Icon" class="logo-image">
-                Google
-            </button>
-            <button class="btn-zalo">
-                <img src="/T-Shop/media/icons/zalo-icon.png" alt="Zalo Icon" class="logo-image">
-                Zalo
-            </button>
-        </div>
-        <div class="separator">
-            <span class="separator-text">hoặc</span>
-        </div>
+        <h2 class="title">Đăng nhập</h2>
         <form action="#" method="post">
-            <div class="input-group">                
-                <input type="text" id="username" name="username" placeholder="TÊN ĐĂNG NHẬP" required style="width: 300px;">
+            <div class="input-group">
+                <input type="text" id="user_name" name="user_name" placeholder="TÊN ĐĂNG NHẬP" required style="width: 300px;">
             </div>
             <div class="input-group">
                 <input type="password" id="password" name="password" placeholder="MẬT KHẨU" required style="width: 300px;">
             </div>
-            <a href="#" class="forgot-password" style="margin-bottom: 10px;">Quên mật khẩu?</a>
+            <?php if ($error): ?>
+                <p style="color: red;"><?php echo htmlspecialchars($error); ?></p>
+            <?php endif; ?>
             <button type="submit" class="btn-login" style="margin-top: 10px;">Đăng nhập</button>
         </form>
         <p class="register-link">Bạn chưa có tài khoản? <a href="/T-Shop/views/users/register.php">Đăng ký ngay</a></p>

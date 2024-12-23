@@ -1,39 +1,16 @@
 <?php
-require_once '../shares/header.php';
-require_once '../../controllers/ProductController.php';
+    require_once '../shares/header.php';
+    require_once '../../controllers/ProductController.php';
+    require_once __DIR__ . '/../../config/db.php';
 
-$productController = new ProductController($pdo);
-$productId = $_GET['id'];
-$product = $productController->GetProductById($productId); // Store returned product
+    $productController = new ProductController($pdo);
+    $productId = $_GET['id'];
+    $product = $productController->GetProductById($productId);
 ?>
 <!DOCTYPE html>
 <html>
 <head>
     <title>Chi tiết sản phẩm</title>
-    <style>
-        .product-container {
-            display: flex;
-            margin: 20px;
-        }
-
-        .product-image {
-            border: 2px solid #808080;
-            margin-right: 20px;
-        }
-
-        .product-details {
-            flex: 1;
-        }
-
-        .buttons {
-            display: flex;
-        }
-
-        .buttons button {
-            margin-right: 10px;
-            margin: 0 120px; /* Adjust margin for button spacing */
-        }
-    </style>
 </head>
 <body>
     <?php if ($product): ?>

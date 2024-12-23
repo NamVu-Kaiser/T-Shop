@@ -6,59 +6,6 @@ require_once __DIR__ . '/../shares/header.php';
 <head>
   <title>Trang quản trị Admin</title>
   <link rel="stylesheet" href="/T-Shop/media/css/admin.css">
-  <!-- <style>
-    body {
-      font-family: sans-serif;
-    }
-
-    .container {
-      max-width: 800px;
-      margin: 20px auto;
-      padding: 20px;
-      background-color: #f9f9f9;
-      border-radius: 5px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
-
-    h2 {
-      color: #333;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 20px;
-    }
-
-    th, td {
-      padding: 10px;
-      text-align: left;
-      border: 1px solid #ddd;
-    }
-
-    th {
-      background-color: #f0f0f0;
-    }
-
-    .btn {
-      display: inline-block;
-      padding: 8px 15px;
-      background-color: #4CAF50;
-      color: #fff;
-      text-decoration: none;
-      border-radius: 5px;
-      margin-right: 5px;
-    }
-
-    .btn-danger {
-      background-color: #f44336;
-    }
-
-    img {
-      max-width: 100px;
-      max-height: 100px;
-    }
-  </style> -->
 </head>
 <body>
   <div class="container">
